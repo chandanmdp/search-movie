@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 
-class updateMovie extends Component {
+class UpdateMovie extends Component {
   constructor(props){
     super(props);
     this.state=
@@ -96,4 +96,4 @@ class updateMovie extends Component {
 
 }
 
-export default updateMovie ;
+export default UpdateMovie ;

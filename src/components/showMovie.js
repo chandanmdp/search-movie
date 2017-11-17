@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
-import UpdateMovie from './UpdateMovie';
+import UpdateMovie from './updateMovie';
 
 class ShowMovie extends Component {
 

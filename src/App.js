@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import IndexMovie from './components/IndexMovie';
+import IndexMovie from './components/indexMovie';
 
 class App extends Component {
   render () {
