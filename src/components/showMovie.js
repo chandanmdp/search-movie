@@ -8,26 +8,22 @@ class ShowMovie extends Component {
     this.props.onUpdate(id,Name,Year,Description);
   }
 
-
-
   btnClick(){
     this.props.clickButton();
   }
 
   render () {
     return (
-        <div>
-          <div className="block">
-            <li className="margin margin-left" >
-              <span className="back-link text-primary" onClick={this.btnClick.bind(this)}>Back</span><br/><br/>
-              <h2 className="text-info">{this.props.movie.name}</h2>
-              <p>{this.props.movie.description}</p>
-              <span className= "text-info">Release Year: {this.props.movie.year}</span>
-            </li>
-            <UpdateMovie onUpdate={this.handleUpdate.bind(this)} movie={this.props.movie} />
-          </div>
-        </div>
-      )
+      <div className="block">
+        <li className="margin margin-left margin-right" >
+          <span className="back-link text-primary" onClick={this.btnClick.bind(this)}>Back</span><br/><br/>
+          <h2 className="text-info">{this.props.movie.name}</h2>
+          <p>{this.props.movie.description}</p>
+          <span className= "text-info">Release Year: {this.props.movie.year}</span>
+        </li>
+      <UpdateMovie onUpdate={this.handleUpdate.bind(this)} movie={this.props.movie} />
+      </div>
+    )
   }
 }
 
