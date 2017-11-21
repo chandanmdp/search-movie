@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import todayDate from './todayDate';
 
 class UpdateMovie extends Component {
   constructor(props){
@@ -10,6 +11,7 @@ class UpdateMovie extends Component {
         id: props.movie.id,
         name: props.movie.name,
         year: props.movie.year,
+        date: props.movie.date,
         description: props.movie.description
       },
       clicked: false
@@ -26,6 +28,7 @@ class UpdateMovie extends Component {
         movie:{
           name:event.target.value,
           year: this.state.movie.year,
+          date: this.state.movie.date,
           description: this.state.movie.description
         }
       }
@@ -38,6 +41,7 @@ class UpdateMovie extends Component {
         movie:{
           name:this.state.movie.name,
           year: event.target.value,
+          date: this.state.movie.date,
           description: this.state.movie.description
         }
       }
@@ -50,7 +54,21 @@ class UpdateMovie extends Component {
         movie:{
           name:this.state.movie.name,
           year: this.state.movie.year,
+          date: this.state.movie.date,
           description: event.target.value
+        }
+      }
+    )
+  }
+
+  handleDateChange(event){
+    this.setState(
+      {
+        movie:{
+          name:this.state.movie.name,
+          year: this.state.movie.year,
+          date: event.target.value,
+          description: this.state.movie.description
         }
       }
     )
@@ -59,16 +77,17 @@ class UpdateMovie extends Component {
   updateMovie(event){
     event.preventDefault();
     let id = this.props.movie.id;
-    let Name = this.refs.name.value;
-    let Year = this.refs.year.value;
-    let Description = this.refs.description.value;
-    if (Name !== '' && Year !== '' && Description !== ''){
-      this.props.onUpdate(id,Name,Year,Description);
+    let name = this.refs.name.value;
+    let year = this.refs.year.value;
+    let description = this.refs.description.value;
+    let releaseDate = this.refs.dateRelease.value;
+
+    if (name !== '' && year !== '' && description !== '' && releaseDate !== ''){
+      this.props.onUpdate(id,name,releaseDate,year,description);
       this.refs.name.value= '';
       this.refs.year.value = '';
       this.refs.description.value = '';
-    }else{
-      alert('Please fill up all fields');
+      this.refs.dateRelease.value = '';
     }
   }
 
@@ -86,6 +105,7 @@ class UpdateMovie extends Component {
               <form onSubmit={this.updateMovie.bind(this)}>
                 <label>Movie name :<input type="text" ref="name" placeholder="Name" className="form-control input-width" value={this.state.movie.name} onChange={this.handleNameChange.bind(this)} required/></label><br/>
                 <label>Release year :<input type="number" ref="year" placeholder="Year" className="form-control input-width" value={this.state.movie.year} onChange={this.handleYearChange.bind(this)} required/></label><br />
+                <label>Date Of Release :<input type="date" className="form-control" ref="dateRelease" value={this.state.movie.date}  max={todayDate()} onChange={this.handleDateChange.bind(this)} required /></label><br />
                 <label>Movie description :<textarea ref="description" placeholder="Write movie description" className="form-control" rows="4" cols="50" value={this.state.movie.description} onChange={this.handleDescriptionChange.bind(this)} required/></label><br />
                 <button type="submit">Update</button>
               </form>

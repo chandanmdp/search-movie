@@ -4,48 +4,56 @@
     "id": 1,
     "name": "Thor Ragnarok",
     "year": "2017",
+    "date":"2017-11-07",
     "description": "When their headquarters are destroyed and the world is held hostage, the Kingsman's journey leads them to the discovery of an allied spy organization in the US. These two elite secret organizations must band together to defeat a common enemy. "
   },
   {
     "id": 2,
     "name": "Bahubali",
     "year": "2015",
+    "date":"2015-05-21",
     "description": "In the kingdom of Mahishmati, while pursuing his love, Shivudu learns about the conflict-ridden past of his family and his legacy. He must now prepare himself to face his new-found archenemy."
   },
   {
     "id": 3,
     "name": "Ghajini",
     "year": "2009",
+    "date":"2009-11-26",
     "description": "Hit by an iron rod, a tycoon suffers from a condition that prevents him from remembering anything beyond fifteen minutes. With notes tattooed on his body, he sets out to find his fiancee's killer."
   },
   {
     "id": 4,
     "name": "3 Idiots",
     "year": "2009",
+    "date":"2003-01-30",
     "description": "In college, Farhan and Raju form a great bond with Rancho due to his refreshing outlook. Years later, a bet gives them a chance to look for their long-lost friend whose existence seems rather elusive."
   },
   {
     "id": 5,
     "name": "Home Alone",
     "year": "1996",
+    "date":"1996-08-08",
     "description": "Eight-year-old Kevin is accidentally left behind when his family leaves for France. At first, he's happy to be in charge; but when thieves try to break into his home, he puts up a fight like no other."
   },
   {
     "id": 6,
     "name": "Braveheart",
     "year": "1995",
+    "date":"1995-08-01",
     "description": "William Wallace, a Scottish rebel, sets out to battle an English tyrant who killed his wife a day after their marriage."
   },
   {
     "id": 7,
     "name": "Titanic",
     "year": "1997",
+    "date":"1997-01-08",
     "description": "Seventeen-year-old Rose hails from an aristocratic family and is set to be married. When she boards the Titanic, she meets Jack Dawson, an artist, and falls in love with him."
   },
   {
     "id": 8,
     "name": "Thor",
     "year": "2011",
+    "date":"2011-04-11",
     "description": " The powerful, but arrogant god Thor, is cast out of Asgard to live amongst humans in Midgard (Earth), where he soon becomes one of their finest defenders. "
 
   },
@@ -53,12 +61,14 @@
     "id": 9,
     "name": "Iron man",
     "year": "2008",
+    "date":"2008-06-18",
     "description": "When an industrialist is captured, he constructs a high-tech armoured suit to escape. Once he manages to escape, he decides to use his suit to fight against evil forces and save the world."
   },
   {
     "id": 10,
     "name": "Thor: The Dark World",
     "year": "2013",
+    "date":"2013-08-26",
     "description": "Malekith, the leader of dark elves, returns years later to take Aether, a weapon, from Asgard in order to force the nine realms into darkness. Now, it is up to Thor to stop him."
   }
   ]

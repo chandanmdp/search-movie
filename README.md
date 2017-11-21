@@ -3,7 +3,7 @@
 Used to Search for movies and their release dates.
 Any movie can be added/updated to the Movie list.
 
-### deployment
+### Deployment
 [Heroku](https://moviesearchengine.herokuapp.com/)
 
 ### `npm start`

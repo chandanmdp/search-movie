@@ -4,8 +4,8 @@ import UpdateMovie from './updateMovie';
 
 class ShowMovie extends Component {
 
-  handleUpdate(id,Name,Year,Description){
-    this.props.onUpdate(id,Name,Year,Description);
+  handleUpdate(id,Name,ReleaseDate,Year,Description){
+    this.props.onUpdate(id,Name,ReleaseDate,Year,Description);
   }
 
   btnClick(){
@@ -19,7 +19,7 @@ class ShowMovie extends Component {
           <span className="back-link text-primary" onClick={this.btnClick.bind(this)}>Back</span><br/><br/>
           <h2 className="text-info">{this.props.movie.name}</h2>
           <p>{this.props.movie.description}</p>
-          <span className= "text-info">Release Year: {this.props.movie.year}</span>
+          <span className= "text-info">Release Date: {this.props.movie.date}</span>
         </li>
       <UpdateMovie onUpdate={this.handleUpdate.bind(this)} movie={this.props.movie} />
       </div>

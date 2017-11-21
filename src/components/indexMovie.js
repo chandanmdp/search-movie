@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ShowMovie from './showMovie';
 import AddMovie from './addMovie';
+import SearchMovie from './searchMovie';
 import MyJson from '../json/movies.json';
 
 class IndexMovie extends Component {
@@ -14,10 +15,10 @@ class IndexMovie extends Component {
         id: 0,
         name: '',
         year: '',
+        date: new Date(),
         description: ''
       },
-      movies_list: false,
-      add_movie: false
+      movies_list: false
     };
   }
 
@@ -37,14 +38,13 @@ class IndexMovie extends Component {
     )
   }
 
-  addMovie(Name,Year,Description){
+  addMovie(Name,Year,Description,releaseDate){
     let Id = this.state.movies.length
     this.setState(
       {
-        movies: this.state.movies.concat({id:Id+1,name:Name,year:Year,description:Description}),
+        movies: this.state.movies.concat({id:Id+1,name:Name,year:Year,date:releaseDate,description:Description}),
         search_name: '',
-        search_year: '',
-        add_movie: true
+        search_year: ''
       }
     )
   }
@@ -58,23 +58,23 @@ class IndexMovie extends Component {
     })
   }
 
-  update(Id,Name,Year,Description){
+  updateDetails(Id,Name,ReleaseDate,Year,Description){
     this.setState({
       movie:{
         id: Id,
         name: Name,
         year: Year,
+        date: ReleaseDate,
         description: Description
       }
     },function(){
       let id = this.state.movie.id;
-      let updated_movies = this.state.movies;
-      updated_movies[id-1] = this.state.movie;
+      let copied_movies = this.state.movies;
+      copied_movies[id-1] = this.state.movie;
       this.setState({
-        movies: updated_movies,
+        movies: copied_movies,
         movies_list: false
       })
-      alert('Movie updated successfully')
     })
   }
 
@@ -124,10 +124,10 @@ class IndexMovie extends Component {
       if (commonValues.length > 0){
         var element =  commonValues.map((movie) => {
           return (
-            <div className="block">
-            <li className="text-bigger text-info text-center margin" >
-            <span className="movie-link" onClick={this.showThisMovie.bind(this,movie.name)}>{movie.name}</span>
-            </li>
+            <div className="block" key={movie.name}>
+              <li className="text-bigger text-info text-center margin" key={movie.name}>
+              <span className="movie-link" onClick={this.showThisMovie.bind(this,movie.name)}>{movie.name} </span>
+              </li>
             </div>
           )
         })
@@ -137,18 +137,14 @@ class IndexMovie extends Component {
       }
 
       if(this.state.movies_list !== false){
-        element = <ShowMovie movie={this.state.movie} onUpdate={this.update.bind(this)} clickButton={this.backButton.bind(this)} />
+        element = <ShowMovie movie={this.state.movie} onUpdate={this.updateDetails.bind(this)} clickButton={this.backButton.bind(this)} />
       }
 
       return (
         <div>
           <div className="bg-info">
             <div className="container">
-              <div className="text-center">
-                <span className="text-biggest margin-right">Search movies :</span>
-                <input type="text" className="search-box-1 margin-right" placeholder="Movie name" value={this.state.search_name} onChange={this.updateSearchName.bind(this)} onClick={this.onSearch.bind(this)} />
-                <input type="text" className="search-box-2" placeholder="Release year" value={this.state.search_year} onChange={this.updateSearchYear.bind(this)} onClick={this.onSearch.bind(this)}/>
-              </div>
+              <SearchMovie search_name={this.state.search_name} search_year={this.state.search_year} onSearchMovie={this.onSearch.bind(this)} updateName={this.updateSearchName.bind(this)} updateYear={this.updateSearchYear.bind(this)} />
             </div>
           </div>
           <div className="container margin">
