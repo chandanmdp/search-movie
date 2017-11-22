@@ -5,9 +5,7 @@ import IndexMovie from './components/indexMovie';
 class App extends Component {
   render () {
     return (
-      <div>
-        <IndexMovie />
-      </div>
+      <IndexMovie />
     )
   }
 }

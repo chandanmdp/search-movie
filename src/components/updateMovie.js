@@ -10,7 +10,6 @@ class UpdateMovie extends Component {
       movie: {
         id: props.movie.id,
         name: props.movie.name,
-        year: props.movie.year,
         date: props.movie.date,
         description: props.movie.description
       },
@@ -22,12 +21,11 @@ class UpdateMovie extends Component {
     this.setState({clicked:false});
   }
 
-  handleNameChange(event){
+  handleNameChange = (event) => {
     this.setState(
       {
         movie:{
           name:event.target.value,
-          year: this.state.movie.year,
           date: this.state.movie.date,
           description: this.state.movie.description
         }
@@ -35,25 +33,11 @@ class UpdateMovie extends Component {
     )
   }
 
-  handleYearChange(event){
+  handleDescriptionChange = (event) => {
     this.setState(
       {
         movie:{
           name:this.state.movie.name,
-          year: event.target.value,
-          date: this.state.movie.date,
-          description: this.state.movie.description
-        }
-      }
-    )
-  }
-
-  handleDescriptionChange(event){
-    this.setState(
-      {
-        movie:{
-          name:this.state.movie.name,
-          year: this.state.movie.year,
           date: this.state.movie.date,
           description: event.target.value
         }
@@ -61,12 +45,11 @@ class UpdateMovie extends Component {
     )
   }
 
-  handleDateChange(event){
+  handleDateChange = (event) => {
     this.setState(
       {
         movie:{
           name:this.state.movie.name,
-          year: this.state.movie.year,
           date: event.target.value,
           description: this.state.movie.description
         }
@@ -74,43 +57,38 @@ class UpdateMovie extends Component {
     )
   }
 
-  updateMovie(event){
+  updateMovie = (event) => {
     event.preventDefault();
     let id = this.props.movie.id;
     let name = this.refs.name.value;
-    let year = this.refs.year.value;
     let description = this.refs.description.value;
     let releaseDate = this.refs.dateRelease.value;
 
-    if (name !== '' && year !== '' && description !== '' && releaseDate !== ''){
-      this.props.onUpdate(id,name,releaseDate,year,description);
+    if (name !== '' && description !== '' && releaseDate !== ''){
+      this.props.onUpdate(id,name,releaseDate,description);
       this.refs.name.value= '';
-      this.refs.year.value = '';
       this.refs.description.value = '';
       this.refs.dateRelease.value = '';
     }
   }
 
-  handleClick(){
+  handleClick = () => {
     this.setState({clicked:true});
   }
 
   render () {
     return (
       <div>
-        <button className="btn btn-primary margin margin-left" onClick={this.handleClick.bind(this)}>Edit Movie</button>
-          <div className={this.state.clicked===false? "hid": ""}>
-            <div className="update-block">
-              <h4 className="text-success text-center"><u>Edit Movie</u></h4>
-              <form onSubmit={this.updateMovie.bind(this)}>
-                <label>Movie name :<input type="text" ref="name" placeholder="Name" className="form-control input-width" value={this.state.movie.name} onChange={this.handleNameChange.bind(this)} required/></label><br/>
-                <label>Release year :<input type="number" ref="year" placeholder="Year" className="form-control input-width" value={this.state.movie.year} onChange={this.handleYearChange.bind(this)} required/></label><br />
-                <label>Date Of Release :<input type="date" className="form-control" ref="dateRelease" value={this.state.movie.date}  max={todayDate()} onChange={this.handleDateChange.bind(this)} required /></label><br />
-                <label>Movie description :<textarea ref="description" placeholder="Write movie description" className="form-control" rows="4" cols="50" value={this.state.movie.description} onChange={this.handleDescriptionChange.bind(this)} required/></label><br />
-                <button type="submit">Update</button>
-              </form>
-            </div>
-          </div>
+        <button className="btn btn-primary margin margin-left" onClick={this.handleClick}>Edit this movie</button>
+        <div className={this.state.clicked===false? "hid update-block": "update-block"}>
+          <h4 className="text-success text-center"><u>Edit Movie</u></h4>
+          <form onSubmit={this.updateMovie}>
+            <label>Movie name :<input type="text" ref="name" placeholder="Name" className="form-control input-width" value={this.state.movie.name} onChange={this.handleNameChange} required/></label><br/>
+            <label>Date Of Release :<input type="date" className="form-control" ref="dateRelease" value={this.state.movie.date}  max={todayDate()} onChange={this.handleDateChange} required /></label><br />
+            <label>Movie description :<textarea ref="description" placeholder="Write movie description" className="form-control" rows="4" cols="50" value={this.state.movie.description} onChange={this.handleDescriptionChange} required/></label><br />
+            <button type="submit">Update</button>
+          </form>
+        </div>
       </div>
 
     )

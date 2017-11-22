@@ -4,19 +4,19 @@
 .block{
   background: #f1f1f1;
   border:1px solid #ccddff;
-  margin-bottom:15px;
+  margin-bottom:10px;
   box-shadow: 3px 3px 3px #b3ccff;
 }
 .text-bigger{
   font-size: 22px;
 }
 .text-biggest{
-  font-size: 28px;
-  color:#ffa500;
+  font-size: 24px;
+  color:#ff8154;
 }
 .margin{
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 .new-movie{
   background: #f1f1f1;
@@ -29,7 +29,7 @@
   margin-top: 30px;
   margin-bottom: 20px;
 }
-.search-box-1, .search-box-2 {
+.search-box-1 {
   width: 30%;
   box-sizing: border-box;
   border: 2px solid #ccc;
@@ -50,10 +50,6 @@
     margin-top: 10px;
     margin-bottom: 0;
   }
-  .search-box-2{
-    width:90%;
-    margin-top: 10px;
-  }
   span.text-biggest{
     display: block;
   }
@@ -65,13 +61,13 @@
   margin-right:20px;
 }
 .margin-left{
-  margin-left:30px;
+  margin-left:20px;
 }
 
 .add-block, .update-block{
   border:1px solid gray;
-  margin: 30px;
-  padding: 30px;
+  margin:10px;
+  padding: 20px;
   background: #e6fff2;
 }
 span.back-link{
@@ -80,6 +76,9 @@ span.back-link{
 }
 .bg-orangish{
   background: #ffdb4d;
+}
+.bg-blue{
+  background: #b3e0ff;
 }
 h1.bg-orangish{
   padding: 10px;
