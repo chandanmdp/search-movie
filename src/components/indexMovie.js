@@ -110,8 +110,9 @@ class IndexMovie extends Component {
         var element =  filteredMovieNames.map((movie) => {
           return (
             <div className="block" key={movie.name}>
-              <li className="text-bigger text-info text-center margin">
-              <span className="movie-link" onClick={this.showThisMovie(movie.name)}>{movie.name} </span>
+              <li className=" text-info text-center margin">
+              <span className="text-bigger movie-link" onClick={this.showThisMovie(movie.name)}>{movie.name} </span><br/>
+              <span>({(new Date(movie.date)).getFullYear()})</span>
               </li>
             </div>
           )
