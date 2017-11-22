@@ -16,7 +16,9 @@ class IndexMovie extends Component {
         date: new Date(),
         description: ''
       },
-      movies_list: false
+      movies_list: false,
+      update_message: false,
+      add_message: false
     };
   }
 
@@ -33,9 +35,15 @@ class IndexMovie extends Component {
     this.setState(
       {
         movies: this.state.movies.concat({id:Id+1,name:Name,date:releaseDate,description:Description}),
-        search_name: ''
+        search_name: '',
+        add_message: true
       }
     )
+    window.setTimeout(() => {
+      this.setState({
+        add_message: false
+      });
+    }, 2000);
   }
 
   showThisMovie=(name)=> () => {
@@ -62,8 +70,14 @@ class IndexMovie extends Component {
       this.setState({
         movies: copied_movies,
         movies_list: false,
-        search_name: ''
+        search_name: '',
+        update_message: true
       })
+      window.setTimeout(() => {
+        this.setState({
+          update_message: false
+        });
+      }, 2000);
     })
   }
 
@@ -126,14 +140,20 @@ class IndexMovie extends Component {
         element = <ShowMovie movie={this.state.movie} onUpdate={this.updateDetails} clickButton={this.backButton} />
       }
 
+      if (this.state.add_message === true){
+        var flash_message_element = <div className="flash-message-block bg-success text-center"><span>Movie added successfully</span></div>
+      }else if (this.state.update_message === true){
+         flash_message_element = <div className="flash-message-block bg-success text-center"><span>Movie updated successfully</span></div>
+      }
+
       return (
-        <div>
           <div className="container-fluid">
             <div className="row bg-blue">
               <div className="col-sm-8 col-sm-offset-2">
                 <SearchMovie search_name={this.state.search_name} onSearchMovie={this.onSearch} updateName={this.updateSearchName} />
               </div>
             </div>
+            {flash_message_element}
             <div className="row margin">
               <div className="col-sm-6 col-sm-offset-3">
                 <ul className="list-unstyled">
@@ -142,7 +162,6 @@ class IndexMovie extends Component {
               </div>
             </div>
           </div>
-        </div>
       )
     }
   }

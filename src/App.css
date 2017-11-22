@@ -15,8 +15,8 @@
   color:#ff8154;
 }
 .margin{
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .new-movie{
   background: #f1f1f1;
@@ -40,8 +40,9 @@
   background-size: 30px 30px;
   background-position: 8px 8px;
   background-repeat: no-repeat;
-  padding: 10px 20px 10px 50px;
+  padding: 10px 20px 12px 40px;
   position: relative;
+  margin-top:20px;
   bottom: 5px;
 }
 @media(max-width:768px){
@@ -91,4 +92,10 @@ span.movie-link{
 }
 .hid {
   display: none;
+}
+.flash-message-block{
+  margin-top: 15px;
+  padding-top:15px;
+  padding-bottom: 15px;
+  border: 1px solid #9effbe;
 }
