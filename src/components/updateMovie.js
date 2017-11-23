@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import '../App.css';
-import todayDate from './todayDate';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 class UpdateMovie extends Component {
   constructor(props){
@@ -10,7 +13,7 @@ class UpdateMovie extends Component {
       movie: {
         id: props.movie.id,
         name: props.movie.name,
-        date: props.movie.date,
+        date: moment(props.movie.date+'T00:00:00.000Z'),
         description: props.movie.description
       },
       clicked: false
@@ -45,12 +48,12 @@ class UpdateMovie extends Component {
     )
   }
 
-  handleDateChange = (event) => {
+  handleDateChange = (value) => {
     this.setState(
       {
         movie:{
           name:this.state.movie.name,
-          date: event.target.value,
+          date: value,
           description: this.state.movie.description
         }
       }
@@ -59,16 +62,22 @@ class UpdateMovie extends Component {
 
   updateMovie = (event) => {
     event.preventDefault();
+    let year = (new Date(this.refs.dateRelease.input.value)).getFullYear();
+    let month = (new Date(this.refs.dateRelease.input.value)).getMonth();
+    month = month + 1;
+    if(month<10){
+      month = '0'+month
+    }
+    let date = (new Date(this.refs.dateRelease.input.value)).getDate();
+    if(date<10){
+      date='0'+date
+    }
     let id = this.props.movie.id;
     let name = this.refs.name.value;
     let description = this.refs.description.value;
-    let releaseDate = this.refs.dateRelease.value;
-
+    let releaseDate = year +'-'+month +'-'+date;
     if (name !== '' && description !== '' && releaseDate !== ''){
       this.props.onUpdate(id,name,releaseDate,description);
-      this.refs.name.value= '';
-      this.refs.description.value = '';
-      this.refs.dateRelease.value = '';
     }
   }
 
@@ -79,12 +88,12 @@ class UpdateMovie extends Component {
   render () {
     return (
       <div>
-        <button className="btn btn-primary margin margin-left" onClick={this.handleClick}>Edit this movie</button>
+        <button className={this.state.clicked===false? "btn btn-primary margin margin-left": "btn btn-primary margin margin-left hid"} onClick={this.handleClick}>Edit this movie</button>
         <div className={this.state.clicked===false? "hid update-block": "update-block"}>
           <h4 className="text-success text-center"><u>Edit Movie</u></h4>
           <form onSubmit={this.updateMovie}>
             <label>Movie name :<input type="text" ref="name" placeholder="Name" className="form-control input-width" value={this.state.movie.name} onChange={this.handleNameChange} required/></label><br/>
-            <label>Date Of Release :<input type="date" className="form-control" ref="dateRelease" value={this.state.movie.date}  max={todayDate()} onChange={this.handleDateChange} required /></label><br />
+            <label>Date of release :<DatePicker selected = {this.state.movie.date} className="form-control" ref="dateRelease" onChange={this.handleDateChange} required/></label><br/>
             <label>Movie description :<textarea ref="description" placeholder="Write movie description" className="form-control" rows="4" cols="50" value={this.state.movie.description} onChange={this.handleDescriptionChange} required/></label><br />
             <button type="submit">Update</button>
           </form>

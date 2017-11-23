@@ -133,7 +133,7 @@ class IndexMovie extends Component {
         })
       }
       else {
-        element = <AddMovie onAddMovie={this.addMovie} clickButton={this.backButtonFromAddMovie}/>
+        element = <AddMovie onAddMovie={this.addMovie} clickButton={this.backButtonFromAddMovie} searchName={this.state.search_name}/>
       }
 
       if(this.state.movies_list !== false){
