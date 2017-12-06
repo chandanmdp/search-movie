@@ -8,9 +8,9 @@ import 'react-confirm-alert/src/react-confirm-alert.css'
 import 'react-datepicker/dist/react-datepicker.css';
 
 class AddMovie extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       dateOfRelease: moment(),
       clicked: false,
       defaultMovieName: '',
@@ -47,18 +47,18 @@ class AddMovie extends Component {
     let year = (new Date(event.target[1].value)).getFullYear();
     let month = (new Date(event.target[1].value)).getMonth();
     month = month + 1;
-    if(month<10){
-      month = '0'+month
+    if(month < 10) {
+      month = '0' + month;
     }
     let date = (new Date(event.target[1].value)).getDate();
-    if(date<10){
-      date='0'+date
+    if(date < 10 ){
+      date = '0' + date;
     }
-    let Name = this.refs.name.value;
-    let Description = this.refs.description.value;
-    let releaseDate = year +'-'+month +'-'+date;
-    if (Name !== '' && Description !== '' && releaseDate !== ''){
-      this.props.onAddMovie(Name,Description,releaseDate);
+    let name = this.refs.name.value;
+    let description = this.refs.description.value;
+    let releaseDate = year + '-' + month + '-' + date;
+    if (name !== '' && description !== '' && releaseDate !== ''){
+      this.props.onAddMovie(name,description,releaseDate);
     }
   }
 
@@ -74,7 +74,7 @@ class AddMovie extends Component {
   btnClick = () => {
     if(this.state.defaultMovieName === '' && this.state.movieDescription === ''){
       this.props.clickButton();
-    }else{
+    } else{
       confirmAlert({
       title: 'Movie not added',
       message: 'Do you want to leave ? ',
@@ -83,24 +83,22 @@ class AddMovie extends Component {
       onConfirm: () => {this.props.clickButton();},
     })
     }
-
-
   }
 
   render () {
     return (
       <li className = "new-movie">
-        <span className="back-link text-primary margin-left" onClick={this.btnClick}>Back</span><br/>
-        <p className="text-danger text-center">Your search did not match any movies.</p>
-        <p className="margin-left">Do you want to add a new one? </p>
-        <button className={this.state.clicked===false? "text-primary margin-left margin-right": "text-primary margin-left margin-right hid"} onClick={this.handleClick}>Add new movie</button>
-        <div className={this.state.clicked===false? "hid add-block": "add-block"}>
-          <h4 className="text-info">Add a new movie</h4>
-          <form onSubmit={this.addMovie} >
-            <label>Movie name :<input type="text" ref="name" className="form-control input-width" value = {this.state.defaultMovieName} onChange={this.handleNameChange} required/></label><br/>
-            <label>Date of release :<DatePicker selected={this.state.dateOfRelease} ref="dateOfRelease" onChange={this.handleChange} className="form-control" required/></label>
-            <label>Movie description :<textarea ref="description" placeholder="Write movie description" className="form-control" rows="4" cols="50" onChange={this.handleDescriptionChange} required/></label><br />
-            <button type="submit">Add new movie</button>
+        <span className = "back-link text-primary margin-left" onClick = {this.btnClick}>Back</span><br/>
+        <p className = "text-danger text-center">Your search did not match any movies.</p>
+        <p className = "margin-left">Do you want to add a new one? </p>
+        <button className = {this.state.clicked === false? "text-primary margin-left margin-right": "text-primary margin-left margin-right hid"} onClick = {this.handleClick}>Add new movie</button>
+        <div className = {this.state.clicked === false? "hid add-block": "add-block"}>
+          <h4 className = "text-info">Add a new movie</h4>
+          <form onSubmit = {this.addMovie} >
+            <label>Movie name :<input type = "text" ref = "name" className = "form-control input-width" value = {this.state.defaultMovieName} onChange = {this.handleNameChange} required/></label><br/>
+            <label>Date of release :<DatePicker selected = {this.state.dateOfRelease} ref = "dateOfRelease" onChange = {this.handleChange} className = "form-control" fixedHeight peekNextMonth showMonthDropdown showYearDropdown dropdownMode = "select" required/></label>
+            <label>Movie description :<textarea ref = "description" placeholder = "Write movie description" className = "form-control" rows = "4" cols = "50" onChange = {this.handleDescriptionChange} required/></label><br />
+            <button type = "submit">Add new movie</button>
           </form>
         </div>
       </li>
